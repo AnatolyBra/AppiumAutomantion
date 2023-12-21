@@ -1,38 +1,62 @@
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import org.junit.After;
-import org.junit.Before;
+import core.BaseTest;
 import org.junit.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import page.IntroPage;
+import page.SearchPage;
 
-import java.net.URL;
+public class FirstTest extends BaseTest {
+    private final IntroPage introPage = new IntroPage();
+    private final SearchPage searchPage = new SearchPage();
 
-public class FirstTest {
-
-    protected AppiumDriver driver;
-
-    @Before
-    public void setUp() throws Exception {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "AndroidTestName");
-        capabilities.setCapability("platformVersion", "11");
-        capabilities.setCapability("automationName", "Appium");
-        capabilities.setCapability("appPackage", "org.wikipedia");
-        capabilities.setCapability("appActivity", ".main.MainActivity");
-        capabilities.setCapability("app", "/Users/gudvin/IdeaProjects/AppiumAutomantion/apk/wikipedia-2-7-50463-r-2023-12-04.apk");
-
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    }
-
-    @After
-    public void turnDown() {
-        driver.quit();
-    }
 
     @Test
-    public void firstTest() {
-        System.out.println("application is running");
+    public void secondTest() {
+        waitForElementByAndClick(
+                introPage.getSkipButton(),
+                "Cannot find button 'Skip'",
+                5
+        );
+
+        waitForElementByAndClick(
+                searchPage.getSearchInputId(),
+                "Cannot click search field",
+                5
+        );
+
+        waitForElementByAndClick(
+                searchPage.getBackButton(),
+                "Cannot click button 'back'",
+                5
+        );
+
+        waitForElementNotPresent(
+                searchPage.getBackButton(),
+                "button 'back' not present in system",
+                5
+        );
+    }
+
+    //    @Test
+    public void testCompareArticleTitle() {
+        waitForElementByAndClick(
+                introPage.getSkipButton(),
+                "Cannot find button 'Skip'",
+                5
+        );
+        waitForElementByAndClick(
+                searchPage.getSearchInput(),
+                "Cannot find search input'",
+                5
+        );
+        waitForElementByAndSendKeys(
+                searchPage.getSearchInput(),
+                "Java",
+                "Cannot input 'Java'",
+                5
+        );
+        waitForElementByAndClick(
+                searchPage.getElementBySearchJava(),
+                "Click by article",
+                5
+        );
     }
 }
