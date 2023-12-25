@@ -1,2 +1,2 @@
 # AppiumAutomantion
-автотесты для android
+автотесты для МП Википедия (Android)
