@@ -21,6 +21,7 @@ public class SearchPage extends BasePage {
     private final By searchInputId =  By.id("org.wikipedia:id/search_container");
     private final By searchResultsTitleId =  By.id("org.wikipedia:id/page_list_item_title");
     private final By backButton =  By.xpath("//*[contains(@content-desc,'Navigate up')]");
+    private final By savedPagesButton = By.xpath("//*[contains(@content-desc,'Saved')]");
 
     public By getSearchInput() {
         return searchInput;
@@ -39,5 +40,9 @@ public class SearchPage extends BasePage {
 
     public By getSearchResultsTitleId() {
         return searchResultsTitleId;
+    }
+
+    public By getSavedPagesButton() {
+        return savedPagesButton;
     }
 }
