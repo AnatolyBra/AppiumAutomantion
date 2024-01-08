@@ -10,7 +10,7 @@ public class ArticlePage extends BasePage {
     }
 
     private static final String FOOTER = "//*[contains(@content-desc,'View article in browser')]",
-            TITLE = "//android.webkit.WebView[@content-desc='{SUBSTRING}']";
+            TITLE = "//android.view.View[@content-desc='{SUBSTRING}']";
 
     public void swipeToFooter() {
         this.swipeUpToFindElement(
