@@ -25,8 +25,20 @@ public class SearchPage extends BasePage {
             SEARCH_RESULTS_TITLE_ID = "org.wikipedia:id/page_list_item_title",
             BACK_BUTTON = "//*[contains(@content-desc,'Navigate up')]",
             SAVE_PAGES_BUTTON = "//*[contains(@text,'Save')]",
-//            SAVED_PAGES_BUTTON = "//*[contains(@text,'Saved')]",
-            SEARCH_TITLE = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']";
+            SEARCH_TITLE = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
+            SEARCH_TITLE_AND_DESCRIPTION = "//*[contains(@resource-id,'org.wikipedia:id/page_list_item')][@text='{SUBSTRING}']";
+    public void waitForElementByTitleAndDescription(String title, String description) {
+        this.waitForElementPresentBy(
+                By.xpath(titleAndDescriptionBySubstringTmp(title)),
+                "Title is not visible",
+                5
+        );
+        this.waitForElementPresentBy(
+                By.xpath(titleAndDescriptionBySubstringTmp(description)),
+                "Description is not visible",
+                5
+        );
+    }
 
     public void clickSearchBySubstring(String substring) {
         this.waitForElementByAndClick(
@@ -52,13 +64,6 @@ public class SearchPage extends BasePage {
         );
     }
 
-//    public void clickSavedButton() {
-//        this.waitForElementByAndClick(
-//                By.xpath(SAVED_PAGES_BUTTON),
-//                "Cannot click button 'saved'",
-//                5
-//        );
-//    }
 
     public void clickSaveButton() {
         this.waitForElementByAndClick(
@@ -139,5 +144,8 @@ public class SearchPage extends BasePage {
 
     private String titleBySubstringTmp(String substring) {
         return SEARCH_TITLE.replace("{SUBSTRING}", substring);
+    }
+    private String titleAndDescriptionBySubstringTmp(String substring) {
+        return SEARCH_TITLE_AND_DESCRIPTION.replace("{SUBSTRING}", substring);
     }
 }

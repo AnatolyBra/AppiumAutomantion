@@ -26,7 +26,6 @@ abstract public class BaseTest extends TestCase {
         capabilities.setCapability("app", appiumDirectory);
 
         driver = new AndroidDriver(new URL(appiumURL), capabilities);
-//        BasePage basePage = new BasePage(driver);
     }
 
     @Override

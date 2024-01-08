@@ -10,22 +10,25 @@ import java.util.List;
 
 public class HomeWork3Test extends BaseTest {
 
-    //    @Test
+    @Test
     public void testSwitchArticle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);
         ArticlePage articlePage = new ArticlePage(driver);
 
-        String searchText = "Appium";
+        String searchText = "Java";
+        String descriptionText = "Island in Indonesia";
+
         introPage.clickSkipButton();
 
         searchPage.clickSearchInput();
         searchPage.assertInputHasText("Search Wikipedia");
         searchPage.setTextSearchInput(searchText);
 
-        searchPage.clickByTitleInSearch(searchText);
+        searchPage.waitForElementByTitleAndDescription(searchText, descriptionText);
+//        searchPage.clickByTitleInSearch(searchText);
 
-        articlePage.swipeToFooter();
+//        articlePage.swipeToFooter();
     }
 
 
