@@ -14,7 +14,6 @@ public class HomeWork3Test extends BaseTest {
     public void testSwitchArticle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);
-        ArticlePage articlePage = new ArticlePage(driver);
 
         String searchText = "Java";
         String descriptionText = "Island in Indonesia";
@@ -112,34 +111,4 @@ public class HomeWork3Test extends BaseTest {
         driver.rotate(ScreenOrientation.LANDSCAPE);
     }
 
-//    private void addTitleToList(List<String> titles, String titleName) {
-//        SearchPage searchPage = new SearchPage(driver);
-//        MenuPage menuPage = new MenuPage(driver);
-//
-//        boolean listExist = false;
-//        for (String title : titles) {
-//            searchPage.clickSearchInput();
-//            searchPage.assertInputHasText("Search Wikipedia");
-//            searchPage.setTextSearchInput(title);
-//            searchPage.clickByTitleInSearch(title);
-//            searchPage.clickSavedButton();
-//
-//            if (!listExist) {
-//
-//                menuPage.clickAddToList();
-//                menuPage.setNameOfThisList(titleName);
-//                menuPage.clickOkButton();
-//
-//            } else {
-//                menuPage.clickAddToList();
-//                menuPage.clickCurrentList(titleName);
-//            }
-////ушли из статьи
-//            searchPage.clickBackButton();
-////ушли из поиска
-//            searchPage.clickBackButton();
-//            searchPage.backButtonNotVisible();
-//            listExist = true;
-//        }
-//    }
 }
