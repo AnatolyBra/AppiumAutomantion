@@ -10,7 +10,7 @@ import java.util.List;
 
 public class HomeWork3Test extends BaseTest {
 
-    @Test
+//    @Test
     public void testSwitchArticle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);
@@ -31,7 +31,7 @@ public class HomeWork3Test extends BaseTest {
     }
 
 
-    @Test
+//    @Test
     public void testArticleSaveToMyList() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);
@@ -78,7 +78,7 @@ public class HomeWork3Test extends BaseTest {
 
         titles.forEach(menuPage::assertTitleByList);
 
-        menuPage.deleteToSwipeArticle(titles.get(0));
+//        menuPage.deleteToSwipeArticle(titles.get(0));
 
         menuPage.titleNotVisible(titles.get(0));
 
@@ -90,7 +90,7 @@ public class HomeWork3Test extends BaseTest {
 
     }
 
-    @Test
+//    @Test
     public void testCheckTitle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);

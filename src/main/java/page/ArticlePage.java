@@ -12,13 +12,13 @@ public class ArticlePage extends BasePage {
     private static final String FOOTER = "//*[contains(@content-desc,'View article in browser')]",
             TITLE = "//android.view.View[@content-desc='{SUBSTRING}']";
 
-    public void swipeToFooter() {
-        this.swipeUpToFindElement(
-                By.linkText(FOOTER),
-                "Не проскролил до футтера",
-                20
-        );
-    }
+//    public void swipeToFooter() {
+//        this.swipeUpToFindElement(
+//                By.linkText(FOOTER),
+//                "Не проскролил до футтера",
+//                20
+//        );
+//    }
 
     public void titleVisible(String title) {
         this.assertElementPresent(

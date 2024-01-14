@@ -17,12 +17,12 @@ public class MenuPage extends BasePage {
             CURRENT_LIST = "//*[contains(@text,'{SUBSTRING}')]",
             TITLE_OF_ARTICLE_IN_LIST = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']";
 
-    public void deleteToSwipeArticle(String title) {
-        this.swipeElementToLeft(
-                By.xpath(titleOfArticleBySubstringTmp(title)),
-                "Cannot find saved article"
-        );
-    }
+//    public void deleteToSwipeArticle(String title) {
+//        this.swipeElementToLeft(
+//                By.xpath(titleOfArticleBySubstringTmp(title)),
+//                "Cannot find saved article"
+//        );
+//    }
 
     public void assertTitleByList(String expectedTitle) {
         this.assertElementHasText(
