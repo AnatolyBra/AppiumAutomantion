@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import java.util.regex.Pattern;
 
 public class SearchPage extends BasePage {
     /**
@@ -19,22 +17,22 @@ public class SearchPage extends BasePage {
     }
 
 
-    private static final String SEARCH_INPUT = "//*[contains(@text,'Search Wikipedia')]",
-            ELEMENT_BY_SEARCH_JAVA = "//*[contains(@text,'{SUBSTRING}')]",
-            SEARCH_INPUT_ID = "org.wikipedia:id/search_container",
-            SEARCH_RESULTS_TITLE_ID = "org.wikipedia:id/page_list_item_title",
-            BACK_BUTTON = "//*[contains(@content-desc,'Navigate up')]",
-            SAVE_PAGES_BUTTON = "//*[contains(@text,'Save')]",
-            SEARCH_TITLE = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
-            SEARCH_TITLE_AND_DESCRIPTION = "//*[contains(@resource-id,'org.wikipedia:id/page_list_item')][@text='{SUBSTRING}']";
+    private static final String SEARCH_INPUT = "xpath://*[contains(@text,'Search Wikipedia')]",
+            ELEMENT_BY_SEARCH_JAVA = "xpath://*[contains(@text,'{SUBSTRING}')]",
+            SEARCH_INPUT_ID = "id:org.wikipedia:id/search_container",
+            SEARCH_RESULTS_TITLE_ID = "id:org.wikipedia:id/page_list_item_title",
+            BACK_BUTTON = "xpath://*[contains(@content-desc,'Navigate up')]",
+            SAVE_PAGES_BUTTON = "xpath://*[contains(@text,'Save')]",
+            SEARCH_TITLE = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
+            SEARCH_TITLE_AND_DESCRIPTION = "xpath://*[contains(@resource-id,'org.wikipedia:id/page_list_item')][@text='{SUBSTRING}']";
     public void waitForElementByTitleAndDescription(String title, String description) {
         this.waitForElementPresentBy(
-                By.xpath(titleAndDescriptionBySubstringTmp(title)),
+                titleAndDescriptionBySubstringTmp(title),
                 "Title is not visible",
                 5
         );
         this.waitForElementPresentBy(
-                By.xpath(titleAndDescriptionBySubstringTmp(description)),
+                titleAndDescriptionBySubstringTmp(description),
                 "Description is not visible",
                 5
         );
@@ -42,7 +40,7 @@ public class SearchPage extends BasePage {
 
     public void clickSearchBySubstring(String substring) {
         this.waitForElementByAndClick(
-                By.xpath(searchClickBySubstringTmp(substring)),
+                searchClickBySubstringTmp(substring),
                 "Click by article",
                 5
         );
@@ -50,7 +48,7 @@ public class SearchPage extends BasePage {
 
     public void backButtonNotVisible() {
         this.waitForElementNotPresent(
-                By.xpath(BACK_BUTTON),
+                BACK_BUTTON,
                 "button 'back' not present in system",
                 5
         );
@@ -58,7 +56,7 @@ public class SearchPage extends BasePage {
 
     public void clickBackButton() {
         this.waitForElementByAndClick(
-                By.xpath(BACK_BUTTON),
+                BACK_BUTTON,
                 "Cannot click button 'back'",
                 5
         );
@@ -67,7 +65,7 @@ public class SearchPage extends BasePage {
 
     public void clickSaveButton() {
         this.waitForElementByAndClick(
-                By.xpath(SAVE_PAGES_BUTTON),
+                SAVE_PAGES_BUTTON,
                 "Cannot click button 'save'",
                 5
         );
@@ -75,7 +73,7 @@ public class SearchPage extends BasePage {
 
     public void clickSearchInput() {
         this.waitForElementByAndClick(
-                By.xpath(SEARCH_INPUT),
+                SEARCH_INPUT,
                 "Cannot click search field",
                 5
         );
@@ -83,7 +81,7 @@ public class SearchPage extends BasePage {
 
     public void setTextSearchInput(String value) {
         this.waitForElementByAndSendKeys(
-                By.xpath(SEARCH_INPUT),
+                SEARCH_INPUT,
                 value,
                 "Cannot input '" + value + "'",
                 5
@@ -92,7 +90,7 @@ public class SearchPage extends BasePage {
 
     public void assertInputHasText(String expected) {
         WebElement element = this.waitForElementPresentBy(
-                By.xpath(SEARCH_INPUT),
+                SEARCH_INPUT,
                 "Text not found in this locator",
                 15
         );
@@ -102,7 +100,7 @@ public class SearchPage extends BasePage {
 
     public void assertTitleHasText(String expected) {
         WebElement element = this.waitForElementPresentBy(
-                By.id(SEARCH_RESULTS_TITLE_ID),
+                SEARCH_RESULTS_TITLE_ID,
                 "Text not found in this locator",
                 15
         );
@@ -112,7 +110,7 @@ public class SearchPage extends BasePage {
 
     public void assertListHasText(String expected) {
         WebElement element = this.waitForElementPresentBy(
-                By.xpath(searchClickBySubstringTmp(expected)),
+                searchClickBySubstringTmp(expected),
                 "Text not found in this locator",
                 15
         );
@@ -121,7 +119,10 @@ public class SearchPage extends BasePage {
     }
 
     public void assertListHasTitleText(String expected) {
-        List<WebElement> listOfSearch = driver.findElements(By.id(SEARCH_RESULTS_TITLE_ID));
+        String[] explodedLocator = SEARCH_RESULTS_TITLE_ID.split(Pattern.quote(":"), 2);
+        String locator = explodedLocator[1];
+
+        List<WebElement> listOfSearch = driver.findElements(By.id(locator));
 
         for (WebElement element : listOfSearch) {
             String actualText = element.getAttribute("text");
@@ -136,7 +137,7 @@ public class SearchPage extends BasePage {
 
     public void clickByTitleInSearch(String title) {
         this.waitForElementByAndClick(
-                By.xpath(titleBySubstringTmp(title)),
+                titleBySubstringTmp(title),
                 "Click by article",
                 5
         );

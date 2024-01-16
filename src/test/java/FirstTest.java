@@ -22,7 +22,7 @@ public class FirstTest extends BaseTest {
         searchPage.backButtonNotVisible();
     }
 
-    //    @Test
+    @Test
     public void testCompareArticleTitle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);

@@ -14,6 +14,7 @@ public class HomeWork3Test extends BaseTest {
     public void testSwitchArticle() {
         IntroPage introPage = new IntroPage(driver);
         SearchPage searchPage = new SearchPage(driver);
+        ArticlePage articlePage = new ArticlePage(driver);
 
         String searchText = "Java";
         String descriptionText = "Island in Indonesia";
@@ -25,9 +26,9 @@ public class HomeWork3Test extends BaseTest {
         searchPage.setTextSearchInput(searchText);
 
         searchPage.waitForElementByTitleAndDescription(searchText, descriptionText);
-//        searchPage.clickByTitleInSearch(searchText);
+        searchPage.clickByTitleInSearch(searchText);
 
-//        articlePage.swipeToFooter();
+        articlePage.swipeToFooter();
     }
 
 
