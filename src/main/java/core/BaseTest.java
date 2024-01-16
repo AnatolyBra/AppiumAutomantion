@@ -40,7 +40,7 @@ abstract public class BaseTest extends TestCase {
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("deviceName", "AndroidTestName");
             capabilities.setCapability("platformVersion", "8");
-            capabilities.setCapability("automationName", "Appium");
+            capabilities.setCapability("automationName", "UiAutomator2");
             capabilities.setCapability("appPackage", "org.wikipedia");
             capabilities.setCapability("appActivity", ".main.MainActivity");
             capabilities.setCapability("app", "/Users/gudvin/IdeaProjects/AppiumAutomantion/apk/wikipedia-2-7-50463-r-2023-12-04.apk");

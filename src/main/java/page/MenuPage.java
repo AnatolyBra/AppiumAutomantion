@@ -2,38 +2,37 @@ package page;
 
 import core.BasePage;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 
 public class MenuPage extends BasePage {
     public MenuPage(AppiumDriver driver) {
         super(driver);
     }
 
-    private static final String NAME_OF_THIS_LIST = "org.wikipedia:id/text_input",
-            PAGE_SAVE = "org.wikipedia:id/page_save",
-            ADD_TO_LIST = "org.wikipedia:id/snackbar_action",
-            OK_BUTTON = "//*[contains(@text,'OK')]",
-            NAME_FOLDER = "//*[@resource-id='org.wikipedia:id/item_title'][@text='{SUBSTRING}']",
-            CURRENT_LIST = "//*[contains(@text,'{SUBSTRING}')]",
-            TITLE_OF_ARTICLE_IN_LIST = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']";
+    private static final String NAME_OF_THIS_LIST = "id:org.wikipedia:id/text_input",
+            PAGE_SAVE = "id:org.wikipedia:id/page_save",
+            ADD_TO_LIST = "id:org.wikipedia:id/snackbar_action",
+            OK_BUTTON = "xpath://*[contains(@text,'OK')]",
+            NAME_FOLDER = "xpath://*[@resource-id='org.wikipedia:id/item_title'][@text='{SUBSTRING}']",
+            CURRENT_LIST = "xpath://*[contains(@text,'{SUBSTRING}')]",
+            TITLE_OF_ARTICLE_IN_LIST = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']";
 
-//    public void deleteToSwipeArticle(String title) {
-//        this.swipeElementToLeft(
-//                By.xpath(titleOfArticleBySubstringTmp(title)),
-//                "Cannot find saved article"
-//        );
-//    }
+    public void deleteToSwipeArticle(String title) {
+        this.swipeElementToLeft(
+                titleOfArticleBySubstringTmp(title),
+                "Cannot find saved article"
+        );
+    }
 
     public void assertTitleByList(String expectedTitle) {
         this.assertElementHasText(
-                By.xpath(titleOfArticleBySubstringTmp(expectedTitle)),
+                titleOfArticleBySubstringTmp(expectedTitle),
                 expectedTitle
         );
     }
 
     public void titleNotVisible(String title) {
         this.waitForElementNotPresent(
-                By.xpath(titleOfArticleBySubstringTmp(title)),
+                titleOfArticleBySubstringTmp(title),
                 "Title is visible",
                 5
         );
@@ -41,7 +40,7 @@ public class MenuPage extends BasePage {
 
     public void clickTitleOfArticleByList(String titleOfArticle) {
         this.waitForElementByAndClick(
-                By.xpath(titleOfArticleBySubstringTmp(titleOfArticle)),
+                titleOfArticleBySubstringTmp(titleOfArticle),
                 "Cannot click by title in current list",
                 15
         );
@@ -49,7 +48,7 @@ public class MenuPage extends BasePage {
 
     public void clickCurrentList(String currentList) {
         this.waitForElementByAndClick(
-                By.xpath(currentListBySubstringTmp(currentList)),
+                currentListBySubstringTmp(currentList),
                 "Cannot click by current list",
                 5
         );
@@ -57,7 +56,7 @@ public class MenuPage extends BasePage {
 
     public void setNameOfThisList(String nameOfThisList) {
         this.waitForElementByAndSendKeys(
-                By.id(NAME_OF_THIS_LIST),
+                NAME_OF_THIS_LIST,
                 nameOfThisList,
                 "Cannot click by name of this list",
                 5
@@ -66,7 +65,7 @@ public class MenuPage extends BasePage {
 
     public void clickAddToList() {
         this.waitForElementByAndClick(
-                By.id(ADD_TO_LIST),
+                ADD_TO_LIST,
                 "Cannot click by add to list",
                 5
         );
@@ -74,7 +73,7 @@ public class MenuPage extends BasePage {
 
     public void clickPageSave() {
         this.waitForElementByAndClick(
-                By.id(PAGE_SAVE),
+                PAGE_SAVE,
                 "Cannot click by page save",
                 5
         );
@@ -82,7 +81,7 @@ public class MenuPage extends BasePage {
 
     public void clickOkButton() {
         this.waitForElementByAndClick(
-                By.xpath(OK_BUTTON),
+                OK_BUTTON,
                 "Cannot click by ok button",
                 5
         );
@@ -90,7 +89,7 @@ public class MenuPage extends BasePage {
 
     public void clickFolderInSaved(String nameFolder) {
         this.waitForElementByAndClick(
-                By.xpath(nameFolderBySubstringTmp(nameFolder)),
+                nameFolderBySubstringTmp(nameFolder),
                 "Cannot click by folder in saved",
                 5
         );
